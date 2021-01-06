@@ -6,8 +6,8 @@ let nowHour = moment().format('H');
 let eight = 8;
 console.log(m);
 console.log(nowHour);
-let possibleTime = [9,10,11,12,1,2,3,4,5];
-let possibleTime24hr = [9,10,11,12,13,14,15,16,17];
+let possibleTime = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+let possibleTime24hr = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 let savedWorkDay = {};
 // displays current day to Jumbotron
 $('#currentDay').append(m);
@@ -18,7 +18,7 @@ $('#currentDay').append(m);
 
 for (let index = 0; index < possibleTime.length; index++) {
     let ampm = '';
-    if(possibleTime[index] > 8 & possibleTime[index] < 12){
+    if (possibleTime[index] > 8 & possibleTime[index] < 12) {
         ampm = 'am';
     } else {
         ampm = 'pm';
@@ -27,9 +27,9 @@ for (let index = 0; index < possibleTime.length; index++) {
 
     // variable to compare current time to the 9-5 to determine what class the textarea should be
     let textAreaClass = '';
-    if (possibleTime24hr[index] < nowHour){
+    if (possibleTime24hr[index] < nowHour) {
         textAreaClass = 'past';
-    } else if (possibleTime24hr[index] === nowHour){
+    } else if (possibleTime24hr[index] === nowHour) {
         textAreaClass = 'present';
     } else {
         textAreaClass = 'future';
@@ -48,13 +48,19 @@ for (let index = 0; index < possibleTime.length; index++) {
         </div>
     </div>
     `);
-    $('.container').append(timeBlocks);  
+    $('.container').append(timeBlocks);
 }
 
+
+
 // save button to local storage? need to get text area content inside stringify '()'.
-    $('.saveBtn').on('click', function(){
-        localStorage.setItem('saved event', JSON.stringify())
-        console.log($(this).attr('id'));
-        console.log($(this));
-    })
+$('.saveBtn').on('click', function () {
+    let storedVariable = $(this).attr('id');
+    console.log($('.' + storedVariable).val());
+    localStorage.setItem(storedVariable, JSON.stringify($('.' + storedVariable).val()));
+    // console.log($(this).attr('id'));
+    // console.log($(this));
+    
+
+})
 
