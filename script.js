@@ -8,6 +8,7 @@ console.log(m);
 console.log(nowHour);
 let possibleTime = [9,10,11,12,1,2,3,4,5];
 let possibleTime24hr = [9,10,11,12,13,14,15,16,17];
+let savedWorkDay = {};
 // displays current day to Jumbotron
 $('#currentDay').append(m);
 
@@ -25,27 +26,35 @@ for (let index = 0; index < possibleTime.length; index++) {
     let hourId = possibleTime[index] + ampm;
 
     // variable to compare current time to the 9-5 to determine what class the textarea should be
-    let textAreaId = '';
+    let textAreaClass = '';
     if (possibleTime24hr[index] < nowHour){
-        textAreaId = 'past';
+        textAreaClass = 'past';
     } else if (possibleTime24hr[index] === nowHour){
-        textAreaId = 'present';
+        textAreaClass = 'present';
     } else {
-        textAreaId = 'future';
+        textAreaClass = 'future';
     }
 
-    console.log(hourId + textAreaId);
+    console.log(hourId + textAreaClass);
     // html format of of row with time, text area, and save button.
     let timeBlocks = $(`
-    <div class="row">
-        <div class = "col-2 hour" id = ${hourId}>
+    <div class="row" >
+        <div class = "col-1 hour" >
             ${hourId}
             </div>
-        <textarea class = "col-8 ${textAreaId}"></textarea>
-        <div class = "col-2 saveBtn">
+        <textarea class = "col-10 ${textAreaClass} ${hourId}"></textarea>
+        <div class = "col-1 saveBtn" id = ${hourId}>
             <i class = "fas fa-save"> Save</i>
         </div>
     </div>
     `);
-    $('.container').append(timeBlocks);
+    $('.container').append(timeBlocks);  
 }
+
+// save button to local storage? need to get text area content inside stringify '()'.
+    $('.saveBtn').on('click', function(){
+        localStorage.setItem('saved event', JSON.stringify())
+        console.log($(this).attr('id'));
+        console.log($(this));
+    })
+
