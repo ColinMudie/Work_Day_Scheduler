@@ -33,7 +33,7 @@ for (let index = 0; index < possibleTime.length; index++) {
     let textAreaClass = '';
     if (possibleTime24hr[index] < nowHour) {
         textAreaClass = 'past';
-    } else if (possibleTime24hr[index] === nowHour) {
+    } else if (possibleTime24hr[index] == nowHour) {
         textAreaClass = 'present';
     } else {
         textAreaClass = 'future';
