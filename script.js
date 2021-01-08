@@ -20,6 +20,10 @@ function checkLocalStorage(key){
     return '';
 }
 
+function clearLocalStorage(key){
+    localStorage.clear(key);
+}
+
 for (let index = 0; index < possibleTime.length; index++) {
     let ampm = '';
     if (possibleTime[index] > 8 & possibleTime[index] < 12) {
@@ -44,9 +48,12 @@ for (let index = 0; index < possibleTime.length; index++) {
         <div class = "col-1 hour">
             ${hourId}
             </div>
-        <textarea class = "col-10 ${textAreaClass} ${hourId}">${checkLocalStorage(hourId)}</textarea>
+        <textarea class = "col-9 ${textAreaClass} ${hourId}">${checkLocalStorage(hourId)}</textarea>
         <div class = "col-1 saveBtn" id = ${hourId}>
             <i class = "fas fa-save"> Save</i>
+        </div>
+        <div class = "col-1 deleteBtn" id = ${hourId}>
+            <i class = "fas fa-minus-square"> Delete</i>
         </div>
     </div>
     `);
@@ -59,3 +66,8 @@ $('.saveBtn').on('click', function () {
     localStorage.setItem(storedVariable, JSON.stringify($('.' + storedVariable).val()));
 })
 
+$('.deleteBtn').on('click', function (){
+    storedVariable = $(this).attr('id');
+    localStorage.setItem(storedVariable, JSON.stringify(''))
+    window.location = window.location;
+})
