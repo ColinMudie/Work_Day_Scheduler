@@ -15,7 +15,7 @@ function checkLocalStorage(key){
     let getStorage = localStorage.getItem(key);
     console.log(getStorage);
     if (getStorage !== null) {
-       return getStorage;
+       return JSON.parse(getStorage);
     } 
     return '';
 }
